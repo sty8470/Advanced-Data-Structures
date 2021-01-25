@@ -1,0 +1,155 @@
+#include <iostream>
+#include<stdlib.h>
+#include <cmath>
+#include <map>
+#include <string>
+
+/* Taeyoung Kevin Shin
+ * COSC 351 Final Project from HacckerRank
+ * Title: Prime Digit Sum using Dynamic Programming and Memoization
+ * 05/14/2018
+ * Dr. Sykes
+ */
+
+
+
+//By using indexing of the string, it calculates the whether the sum of consecutive three numbers is a prime number or not
+//string n = "12345";
+//Calculating partial segment(1+2+3, 2+3+4, 3+4+5) by converting each character into integer
+//Storing them in a temp vector
+
+
+ * result.push_back(1);
+    result.push_back(2);
+    result.push_back(10);
+    result.push_back(20);
+    for (int i=0; i<result.size();i++){
+        cout<<result[i]<<" ";
+    }
+/*int main()
+{
+    int n = 12345678;
+    int r;
+    vector<int>result;
+    int seg;
+    while (n>0) {
+        r = n % 10;
+        n = n/10;
+        result.push_back(r);
+    }
+
+    for (unsigned int i = 0; i< result.size()-2; i++){
+        seg = result[i] + result[i+1] + result[i+2];
+        cout << seg << endl;
+
+
+//Discerning whether given number is a prime or not
+bool is_prime(n){
+    const char *nptr = n;
+    int num = atoi(nptr);
+    if (num == 0 or num == 1) {
+        return false;
+    }
+    for (int i=2; sqrt(i)+1;  i++) {
+        if (num%i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+//Making a repository array holding all possible three digits and their sums
+int *repository(){
+    int *arr = new int[1000];
+    for (int i =0; i<10; i++){
+        for (int j=0; j<10; j++){
+            for (int k=0; k<10; k++){
+                arr[to_string(i)+ to_string(j)+ to_string(k)] = i+j+k;
+            }
+
+        }
+    }
+    //static int reposit[1000] = {};
+
+    return arr;
+
+}
+
+int* lookup = int* repository();
+
+
+//By using indexing of the string, it calculates the whether the sum of consecutive three numbers is a prime number or not
+bool is_three_digits_prime(n){
+    for (int j =0; j< len(n)-2; j++){
+        string seg = n[j:j+3];
+        if (is_prime(lookup[seg]) == false {
+            return false;
+        }
+    }
+    return true;
+}
+
+
+bool is_four_digits_sum_prime(n){
+    for (int j=0; j<len(n)-3; j++){
+        string seg = n[j:j+4]
+        char head = seg[0];
+        string key = seg[1:];
+        if (is_prime(stoi(head)) + lookup[key] == false){
+            return false;
+        }
+    }
+    return true;
+}
+
+
+bool is_five_digits_sum_prime(n){
+    for (int j=0; j<len(n)-4; j++){
+        string seg = n[j:j+5];
+        char first_head = seg[0];
+        char second_head = seg[1];
+        string key = seg[2:];
+        if (is_prime(stoi(first_head)+ stoi(second_head)+lookup[key]) == false){
+            return false;
+        }
+    }
+    return true;
+}
+
+//Given the input n refering to the number of digits, this function loops through all the possible numbers and check whether they all satisfy above Chole's conditions
+int final_digits(n){
+    n = atoi(n);
+    if (n<5){
+        return false;
+    }
+
+    int *result_ptr = new result_array[400000];
+    for (int k = (pow(10,n-1)); k< pow(10,n); k++){
+        k = to_string(k);
+        bool x = is_three_digits_prime(k);
+        bool y = is_four_digits_sum_prime(k);
+        bool z = is_five_digits_sum_prime(k);
+    }
+
+    if (x and y and z == true){
+        for (int index = 0; index< len(result_array); index++){
+            result_array[index] = k;
+        }
+    }
+
+    return len(result_array);
+
+}
+
+int main() {
+    int q;
+    std::cout << "Enter the number of queries: " << std::endl;
+    std::cin >> q;
+    for (int i=0; i<q; i++){
+        int n;
+        std::cout <<"Enter the number of digits: "<< std::endl;
+        std::cout << final_digits(n) <<std::endl;
+    }
+    return 0;
+}

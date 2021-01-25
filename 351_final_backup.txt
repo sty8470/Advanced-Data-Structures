@@ -1,0 +1,204 @@
+#include <iostream>
+#include <cmath>
+#include <map>
+#include <string>
+#include <vector>
+#include <typeinfo>
+using namespace std;
+
+/* Taeyoung Kevin Shin
+ * COSC 351 Final Project from HacckerRank
+ * Title: Prime Digit Sum using Dynamic Programming and Memoization
+ * 05/14/2018
+ * Dr. Sykes
+ */
+
+
+/*
+ * Printing out vector
+*/
+
+
+//Discerning whether given number is a prime or not
+int is_prime(int num){
+    static int prime[46] = {0,0,1,1,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,1,0,0,0,1,0,0,0,0,0,1,0,1,0,0,0,0,0,1,0,0,0,1,0,1,0,0};
+    return prime[num];
+}
+
+// sum vector that contains every partial sum of input num, three, four, and five consecutive one respectively
+vector<int> sum;
+
+// temp vector that contains each singular digit of input num
+
+//checking whether three digit sums are prime or not
+
+bool is_three_digits_sum_prime(int num) { //num= 283002
+    vector<int>temp;
+    int r;
+    int seg;
+    // int num = 283002
+    while (num > 0) {
+        r = num % 10; // r= 2, 0 ...
+        num = num / 10; // num = 28300, 2830 ... 2
+        //cout << "num is" << num << endl;
+        //cout << "r is" << r << endl;
+        temp.push_back(r);  // temp = [2,0]
+    }
+
+    for (unsigned int i = 0; i < temp.size()-2; i++) {
+        seg = temp[i] + temp[i + 1] + temp[i + 2];
+        sum.push_back(seg); // sum = [8+7+6, 7+6+5, 6+5+4, 5+4+3, 4+3+2, 3+2+1]
+        if (is_prime(seg) == 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+
+bool is_four_digits_sum_prime(int num) { //num= 283002
+    vector<int>temp;
+    int r;
+    int seg;
+    // int num = 283002
+    while (num > 0) {
+        r = num % 10; // r= 2, 0 ...
+        num = num / 10; // num = 28300, 2830 ... 2
+        //cout << "num is" << num << endl;
+        //cout << "r is" << r << endl;
+        temp.push_back(r);  // temp = [2,0]
+    }
+
+    for (unsigned int i = 0; i < temp.size()-3; i++) {
+        seg = temp[i] + temp[i + 1] + temp[i + 2] + temp[i+3];
+        sum.push_back(seg); // sum = [8+7+6, 7+6+5, 6+5+4, 5+4+3, 4+3+2, 3+2+1]
+        if (is_prime(seg) == 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+
+
+bool is_five_digits_sum_prime(int num) { //num= 283002
+    vector<int>temp;
+    int r;
+    int seg;
+    // int num = 283002
+    while (num > 0) {
+        r = num % 10; // r= 2, 0 ...
+        num = num / 10; // num = 28300, 2830 ... 2
+        //cout << "num is" << num << endl;
+        //cout << "r is" << r << endl;
+        temp.push_back(r);  // temp = [2,0]
+    }
+
+    for (unsigned int i = 0; i < temp.size()-4; i++) {
+        seg = temp[i] + temp[i + 1] + temp[i + 2] + temp[i+3] + temp[i+4];
+        sum.push_back(seg); // sum = [8+7+6, 7+6+5, 6+5+4, 5+4+3, 4+3+2, 3+2+1]
+        if (is_prime(seg) == 0) {
+            return false;
+        }
+    }
+    return true;
+
+}
+//Given the input n referring to the number of digits, this function loops through all the possible numbers and check whether they all satisfy above Chole's conditions
+int final_digits(int n) {
+    int k;
+    vector<int> result;
+    //cout << is_three_digits_sum_prime(101101) << endl;
+    for (k = pow(10,n-1); k < pow(10,n); ++k) {
+        //string k = to_string(k);
+        // k = 1000 ~ 9999
+        int p = k;
+        if (is_three_digits_sum_prime(p) && is_four_digits_sum_prime(p) && is_five_digits_sum_prime(p)  == true){
+            result.push_back(k);
+        }
+        //result.push_back(123);
+    }
+
+   
+
+    return result.size();
+}
+
+    int main() {
+        //is_three_digits_sum_prime(100000);
+        //cout << is_prime(29) << endl;
+
+        //cout << is_three_digits_sum_prime(283002) << endl;
+        //cout << is_three_digits_sum_prime(283003) << endl;
+        //cout << is_three_digits_sum_prime(283004) << endl;
+       cout << final_digits(6) << endl;
+        //cout <<999999-100000+1<<endl;
+
+    }
+
+    /*
+    vector<int>a;
+    a = final_digits(6);
+    for(int i =0; i< a.size(); i++) {
+        cout << " " << a[i];
+
+    }
+     */
+
+    /*
+    int q;
+    cout << "Enter the number of queries: " << endl;
+    cin >> q;
+    for (int i=0; i<q; i++){
+        int n;
+        cout <<"Enter the number of digits greater than 5 at least: "<< endl;
+        cin >> n;
+        if (n<5){
+            cout << "Your input is wrong" << endl;
+        }
+
+        else {
+            cout << "Result size is " << (final_digits(n)) <<endl;
+        }
+    }
+
+    return 0;
+}
+
+     */
+
+/*
+    //for (int i=2; i<46; i++){
+    //    cout << "Test " << i << " " << is_prime(i) << endl;
+
+    cout << "Test "<< is_three_digits_sum_prime(283002) << endl;
+    cout << "Test " << is_four_digits_sum_prime() << endl;
+    //sum.clear();
+    //temp.clear();
+    cout << "Test " << is_five_digits_sum_prime() << endl;
+
+
+
+    /*
+    for (int i = 0; i < temp.size(); i++) {
+        cout << " "<< temp[i];
+    }
+
+    for (int i =0; i< sum.size(); i++) {
+        cout << "\n " << sum[i];
+    }
+
+
+
+
+
+     int n;
+    cin >> n;
+    for (double k = pow(10,n-1); k < pow(10,n); k++){
+        //string k = to_string(k);
+        cout << k << "\t";
+        }
+    }
+
+     */

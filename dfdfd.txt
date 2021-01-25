@@ -1,0 +1,33 @@
+<?pnp
+mysql_connect("localhost", "root", "password") or die("could not connect);
+mysql_select_db("search_test") or die("could not find db!");
+
+//collect
+if(isset($_POST['search'])) {
+	$searching = $_POST['search'];
+	$searching = preg_replace("[^0-9a-z]", "",$searching);
+
+	$query = mysql_query("SELECT * FROM Business where business_name  = %s ", ['search'])
+	$count = mysql_num_rows($query); 
+	if ($count == 0){
+		$output = 'There was no search results!';
+	}else{
+
+		while($row = mysql_fetch_array($query)) {
+			$restaurant = $row['business_name'];
+			$review = $row['review_count'];
+
+			$output .= '<div> '.$restaurant. ' '.$review.'</div>';		
+
+	}
+
+<body>
+
+<form action = "index.php" method = "post">
+	<input type = "text" name = "search" placeholder = "Search for members.."
+	<input type = "submit" value = ">>" />
+
+</form>
+<?php print("$output");?>
+
+</body>

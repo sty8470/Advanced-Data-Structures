@@ -1,0 +1,18 @@
+project 1 - show primes 
+*main.c
+
+project 2 - List ADT 
+*doublylinkedlist.c
+
+
+project 3 - Word Find
+*main.c
+
+project 4 - IntListADT ( C++)
+*intlist.cpp
+
+project 5 - Queue ADT
+
+
+
+project 6 - HackerRank Code
