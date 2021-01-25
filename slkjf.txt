@@ -1,6 +1,0 @@
-business_id
-business_name
-address
-latitude
-longitude
-review_count
